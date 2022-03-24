@@ -46,8 +46,12 @@ def ratingAll(request):
             rating = Rating.objects.filter(professor_id=r.id).aggregate(avg=Avg("rating"))
             result_data['p_Name'] = r.p_Name
             result_data['p_code'] = r.p_code
-            result_data['rating'] = round(rating['avg'])
-            result.append(result_data)
+            try:
+                result_data['rating'] = round(rating['avg'])
+                result.append(result_data)
+            except Exception:
+                result_data['rating'] = 0
+                result.append(result_data)
         result = json.dumps(result)
         return HttpResponse(result, content_type='application/json')
     else:
@@ -131,7 +135,7 @@ def register(request):
         email = data['email']
         if email.find("@") == -1:
             return HttpResponse("Enter valid email address!", content_type='application/json')
-        pwd = make_password(data['pwd'])
+        pwd = data['pwd']
         try:
             User.objects.create_user(username, email, pwd)
         except Exception:

@@ -57,10 +57,14 @@ class Client(cmd.Cmd):
         exit(0)
 
     def list(self):
-        url = "http://127.0.0.1:8000/listAll/"
+        url = "https://sc18y5h.pythonanywhere.com/listAll/"
+        proxies = {
+            'http': None,
+            'https': None,
+        }
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) App1eWebKit/537.36 (KHTML; like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers,proxies=proxies)
         if response.status_code == 200:
             response.encoding = "utf-8"
             content = json.loads(response.text)
@@ -84,10 +88,14 @@ class Client(cmd.Cmd):
             print(response.text)
 
     def view(self):
-        url = "http://127.0.0.1:8000/ratingAll/"
+        url = "https://sc18y5h.pythonanywhere.com/ratingAll/"
+        proxies = {
+            'http': None,
+            'https': None,
+        }
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) App1eWebKit/537.36 (KHTML; like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers,proxies=proxies)
         if response.status_code == 200:
             response.encoding = "utf-8"
             content = json.loads(response.text)
@@ -100,10 +108,14 @@ class Client(cmd.Cmd):
             print(response.text)
 
     def average(self, arg1, arg2):
-        url = "http://127.0.0.1:8000/averageRating/p" + arg1 + "m" + arg2 + "/"
+        url = "https://sc18y5h.pythonanywhere.com/averageRating/p" + arg1 + "m" + arg2 + "/"
+        proxies = {
+            'http': None,
+            'https': None,
+        }
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) App1eWebKit/537.36 (KHTML; like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers,proxies=proxies)
         if response.status_code == 200:
             try:
                 response.encoding = "utf-8"
@@ -121,17 +133,25 @@ class Client(cmd.Cmd):
             print(response.text)
 
     def rate(self, arg1, arg2, arg3, arg4, arg5):
-        url = "http://127.0.0.1:8000/rate/p" + arg1 + "m" + arg2 + "y" + arg3 + "s" + arg4 + "r" + arg5 + "/"
+        url = "https://sc18y5h.pythonanywhere.com/rate/p" + arg1 + "m" + arg2 + "y" + arg3 + "s" + arg4 + "r" + arg5 + "/"
+        proxies = {
+            'http': None,
+            'https': None,
+        }
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) App1eWebKit/537.36 (KHTML; like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
-        response = requests.post(url, headers=headers)
+        response = requests.post(url, headers=headers,proxies=proxies)
         if response.status_code == 200:
             print(response.text)
         else:
             print("failed")
 
     def register(self,username, email, pwd):
-        url = "http://127.0.0.1:8000/register/"
+        url = "https://sc18y5h.pythonanywhere.com/register/"
+        proxies = {
+            'http': None,
+            'https': None,
+        }
         data = {
             "username": username,
             "email": email,
@@ -139,21 +159,25 @@ class Client(cmd.Cmd):
         }
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) App1eWebKit/537.36 (KHTML; like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
-        response = requests.post(url, data=json.dumps(data),headers=headers)
+        response = requests.post(url, data=json.dumps(data),headers=headers,proxies=proxies)
         if response.status_code == 200:
             print(response.text)
         else:
             print(response.text)
 
     def login(self,username,pwd):
-        url = "http://127.0.0.1:8000/login/"
+        url = "https://sc18y5h.pythonanywhere.com/login/"
+        proxies = {
+            'http': None,
+            'https': None,
+        }
         data = {
             "username": username,
             "pwd": pwd
         }
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) App1eWebKit/537.36 (KHTML; like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
-        response = requests.post(url, data=json.dumps(data),headers=headers)
+        response = requests.post(url, data=json.dumps(data),headers=headers,proxies=proxies)
         cookie_dict = requests.utils.dict_from_cookiejar(response.cookies)
         cookies = requests.utils.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)
         s = requests.Session()
@@ -164,10 +188,14 @@ class Client(cmd.Cmd):
             print(response.text)
 
     def logout(self):
-        url = "http://127.0.0.1:8000/logout/"
+        url = "https://sc18y5h.pythonanywhere.com/logout/"
+        proxies = {
+            'http': None,
+            'https': None,
+        }
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) App1eWebKit/537.36 (KHTML; like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
-        response = requests.post(url, headers=headers)
+        response = requests.post(url, headers=headers,proxies=proxies)
         if response.status_code == 200:
             print(response.text)
         else:
