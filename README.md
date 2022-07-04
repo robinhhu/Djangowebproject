@@ -3,6 +3,7 @@ The Django server code is uploaded to pythonanywhere. The backend service is now
 
 ## project structure
 backend-Django
+
 frontend-command line
 
 ## how to use(if the account is still active!)
