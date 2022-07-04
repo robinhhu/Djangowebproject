@@ -1,5 +1,5 @@
 # Djangowebproject
-The Django server code is uploaded to pythonanywhere. The backend service is now running on sc18y5h.pythonanywhere.com（but the server may have expired）. Courses, Processor can be added here using admin account
+The Django server code is uploaded to pythonanywhere. The backend service is now running on sc18y5h.pythonanywhere.com（but the server may have expired）. Courses and professors can be added here using admin account
 
 ## project structure
 backend-Django
